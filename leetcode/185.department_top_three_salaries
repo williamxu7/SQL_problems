@@ -1,0 +1,8 @@
+SELECT d.Name as Department, a. Name as Employee, a. Salary 
+FROM (
+SELECT e.*, DENSE_RANK() OVER (PARTITION BY DepartmentId ORDER BY Salary desc) AS DeptPayRank 
+FROM Employee e 
+) a 
+JOIN Department d
+ON a. DepartmentId = d. Id 
+WHERE DeptPayRank <=3;
