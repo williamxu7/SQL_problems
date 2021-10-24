@@ -1,2 +1,2 @@
 # SQL_problems
-A repository for some SQL problems solutions
+A repository for SQL problems solutions
