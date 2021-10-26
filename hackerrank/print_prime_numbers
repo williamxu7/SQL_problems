@@ -1,0 +1,14 @@
+SET @pot_prime = 1;
+SET @div = 1;
+
+SELECT GROUP_CONCAT(POT_PRIME SEPARATOR '&')FROM
+	(SELECT @pot_prime := @pot_prime + 1 AS POT_PRIME
+	 FROM information_schema.tables t1, information_schema.tables t2
+	 LIMIT 1000) list_pot_primes
+WHERE NOT EXISTS(
+	SELECT * FROM
+	(SELECT @div := @div + 1 AS DIVISOR
+	 FROM information_schema.tables t3, information_schema.tables t4
+	 LIMIT 1000) list_div
+	 WHERE MOD(POT_PRIME, DIVISOR) = 0 AND POT_PRIME <> DIVISOR
+);
