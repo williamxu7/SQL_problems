@@ -1,0 +1,10 @@
+SELECT Name
+FROM Students s
+JOIN Friends f
+ON s.ID = f.ID
+JOIN Packages p
+ON f.ID = p.ID
+JOIN Packages p2
+ON f.Friend_ID = p2.id
+WHERE p.salary < p2.salary
+ORDER BY p2.salary;
